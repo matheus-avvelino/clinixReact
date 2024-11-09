@@ -1,8 +1,12 @@
 function Footer() {
     return (
       <footer>
-        &copy; 2024 Clinix. Todos os direitos reservados.
-      </footer>
+    <p>Desenvolvido por Matheus Avelino</p>
+    <a href="https://github.com/matheus-avvelino/clinixReact" target="_blank" className="github-link">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" className="github-icon"></img>
+        GitHub
+    </a>
+    </footer>
     );
   }
   

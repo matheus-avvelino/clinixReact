@@ -10,7 +10,7 @@ body {
 }
 
 header {
-    background-color: #007bff;
+    background-color: #9885da;
     color: white;
     padding: 16px;
     text-align: center;
@@ -21,13 +21,13 @@ nav {
     justify-content: center;
     gap: 8px;
     padding: 8px;
-    background-color: #f4f4f4;
+    background-color: #E3DFF0;
     margin-top: 8px;
 }
 
 nav a {
     text-decoration: none;
-    color: #007bff;
+    color: #212121;
     padding: 8px 16px;
     background-color: #fff;
     border: 1px solid #ddd;
@@ -63,43 +63,71 @@ table td {
 }
 
 table th {
-    background-color: #007bff;
+    background-color: #9885da;
     color: white;
 }
 
 table td a {
     text-decoration: none;
-    color: white;
+    color: #FFFFFF;
     padding: 6px 12px;
     border-radius: 4px;
 }
 
 .btn-editar {
-    background-color: #ffc107;
+    background-color: #FFA726;
 }
 
 .btn {
     border: none;
     padding: 4px 8px;
     border-radius: 4px;
-    color: #fff;
+    color: #FFFFFF;
     cursor: pointer;
 }
 .btn:hover {
-    opacity: 0.8;
+    opacity: 0.6;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    color: #000000;
+    transition: box-shadow 0.3s ease, opacity 0.3s ease, color 0.2s ease, opacity 0.3s ease;;
 }
 
 .btn-excluir {
-    background-color: #dc3545;
+    background-color: #fc4632;
 }
 
 footer {
     text-align: center;
     padding: 16px;
-    background-color: #f4f4f4;
+    background-color: #9885da;
     color: #333;
 }
 
+.footer p {
+    margin: 0;
+}
+
+
+.github-link {
+    color: #FFFFFF;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.github-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+}
+
+.github-link:hover {
+    color: rgba(0, 0, 0, 0.8);;
+    opacity: 0.8;
+}
+
+/*Falta fazer futuras alterações abaixo*/
 .cadastro {
     background: #eee;
     display: flex;

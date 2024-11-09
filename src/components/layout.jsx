@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import Header from "./header";
 import Menu from "./menu";
 import Footer from "./footer";

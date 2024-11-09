@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 
 import { columns } from "../config/columns-pacientes"
 
