@@ -2,7 +2,7 @@
 
 import { columns } from "../config/columns-pacientes"
 
-function Table({ pacientes, deleteFn }) {
+function Table({ pacientes, deleteFn, editForm}) {
 
 
   return (
@@ -25,9 +25,9 @@ function Table({ pacientes, deleteFn }) {
             <td>{item.idade}</td>
             <td>{item.cpf}</td>
             <td>
-              <a href="#" className="btn-editar">
+              <button onClick={() => editForm(item)} className="btn btn-editar">
                 Editar
-              </a>
+              </button>
             </td>
             <td>
               <button

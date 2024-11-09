@@ -82,18 +82,45 @@ table td a {
     border: none;
     padding: 4px 8px;
     border-radius: 4px;
-    color: #FFFFFF;
-    cursor: pointer;
-}
-.btn:hover {
-    opacity: 0.6;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
     color: #000000;
-    transition: box-shadow 0.3s ease, opacity 0.3s ease, color 0.2s ease, opacity 0.3s ease;;
+    cursor: pointer;
+    transition: box-shadow 0.6s ease;
+}
+
+.btn:hover {
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.6);
+    transition: box-shadow 0.6s ease,
 }
 
 .btn-excluir {
     background-color: #fc4632;
+}
+
+.btn-alterar {
+    text-align: center;
+    background-color: #9885da; /* Cor de fundo verde */
+    color: rgb(0, 0, 0); /* Cor do texto */
+    padding: 5px 10px; /* Espaçamento interno */
+    margin-bottom: 5px;
+    border: none; /* Remover borda padrão */
+    border-radius: 4px; /* Borda arredondada */
+    cursor: pointer; /* Mudar o cursor para indicar que é clicável */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.4);
+    transition: transform 0.1s, background-color 0.1s; /* Transições suaves */
+}
+
+.btn-alterar:hover {
+    background-color: #9885da; /* Cor de fundo um pouco mais escura ao passar o mouse */
+    transform: translateY(-4px); /* Move o botão para cima ao passar o mouse */
+}
+
+.btn-alterar:active {
+    transform: translateY(4px); /* Move o botão para baixo quando pressionado */
+    background-color: #9885da; /* Cor de fundo ainda mais escura quando clicado */
+}
+
+.btn-alterar:focus {
+    outline: none; /* Remove o contorno ao focar no botão */
 }
 
 footer {
@@ -127,9 +154,9 @@ footer {
     opacity: 0.8;
 }
 
-/*Falta fazer futuras alterações abaixo*/
+/*Falta azer futuras alterações abaixo*/
 .cadastro {
-    background: #eee;
+    background: #F4E8FF;
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -145,46 +172,37 @@ footer {
     max-width: 400px;
 }
 .cadastro .field label {
-    color: #222;
+    color: #333333;
     font-weight: bold;
+    font-family: 'Roboto', sans-serif;
 }
 .cadastro .field input {
     border: none;
     padding: 10px;
     width: 100%;
     margin: 5px 0;
+    border-radius: 6px;
 }
 .cadastro .field button {
     border: none;
     padding: 10px;
-    background: #666;
+    background: #b5bcc2;
     border-radius: 4px;
-    color: #fff;
+    color: #000000;
+    cursor: pointer;
+    transition: background-color 0.6s ease, box-shadow 0.6s ease;
 }
 
-.topo {
-    background-color: #666;
-    padding: 10px;
-    margin-bottom: 20px;
-    border-radius: 4px;
-}
-.topo button {
-    background-color: #219ebc;
-    padding: 10px;
-    display: flex;
-    justify-content: center;
-}
-.topo button.list {
-    background-color: #c1121f;
+.cadastro .field button:hover {
+    background-color: #45a049;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.6);
+    transition: box-shadow 0.6s ease, background-color 0.6s ease;
 }
 
 .menu a.active {
     background: #054f77;
     color: #fff;
     font-weight: bold;
-}
-.topo span {
-    margin: 1px 3px;
 }
 
 .error {
