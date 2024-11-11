@@ -4,7 +4,7 @@
       "id": "1",
       "nomeCompleto": "João da Silva",
       "email": "joao.silva@email.com",
-      "idade": 30,
+      "idade": "33",
       "cpf": "123.456.789-00"
     },
     {
@@ -32,15 +32,8 @@
       "id": "5",
       "nomeCompleto": "Lucas Martins",
       "email": "lucas.martins@email.com",
-      "idade": 40,
+      "idade": "35",
       "cpf": "567.890.123-44"
-    },
-    {
-      "id": "6",
-      "nomeCompleto": "Fernanda Costa",
-      "email": "fernanda.costa@email.com",
-      "idade": 33,
-      "cpf": "678.901.234-55"
     },
     {
       "id": "7",
@@ -57,18 +50,11 @@
       "cpf": "890.123.456-77"
     },
     {
-      "id": "e08a",
-      "nomeCompleto": "Matheus Avelino",
-      "email": "matheus@m.com.br",
-      "idade": "23",
-      "cpf": "546546546546"
-    },
-    {
-      "id": "370f",
-      "nomeCompleto": "Manoel Joao",
-      "email": "mano@gmail.com.br",
-      "idade": "24",
-      "cpf": "126546"
+      "id": "5e00",
+      "nomeCompleto": "Paulo",
+      "email": "paulo@teste.com.br",
+      "idade": "33",
+      "cpf": "165456465465465"
     }
   ]
 }

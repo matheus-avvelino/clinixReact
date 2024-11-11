@@ -1,78 +1,58 @@
 /* eslint-disable react/prop-types */
-import { cadastroPacientesApi, editarPacientesApi } from "../services/api";
 
-const Form = ({form, setForm, update, setUpdate, getPacientes}) => {
+const Form = ({ paciente, change, submit }) => {
 
-    const setChange = (field, value) => {
-        setForm(
-            {
-                ...form,
-
-                [field]: value,
-            }
-        )
-    }
-
-    const submit = async () => {
-        try {
-            const action = update ? editarPacientesApi : cadastroPacientesApi;
-            await action(form);
-            alert(`${update ? `Atualização` : `Cadastrado`} do usuario ${form.nomeCompleto} feito com sucesso`);
-            setForm({})
-            getPacientes();
-            setUpdate(false);
-        } catch {
-            throw new Error("Error Cadastro");
-        } 
+    const submitForm = async () => {
+        submit()
     }
 
     return (
         <div className="cadastro">
-            {console.log(update)}
-            {update ? "update" : "cadastro"}
             <div className="field">
                 <label>Nome Completo</label>
-                <input 
-                    type="text" 
+                <input
+                    value={paciente.nomeCompleto || ''}
+                    onChange={(e) => change("nomeCompleto", e.target.value)}
+                    type="text"
                     placeholder="Nome Completo"
-                    value={form.nomeCompleto || ''}
-                    onChange={(e) => setChange('nomeCompleto', e.target.value)}
                 />
             </div>
 
             <div className="field">
                 <label>Email</label>
-                <input 
+                <input
                     type="text"
                     placeholder="email@email.com.br"
-                    value={form.email || ''}
-                    onChange={(e) => setChange('email', e.target.value)}/>
-            </div>
-
-            <div className="field">
-                <label>Idade</label>
-                <input 
-                    type="text" 
-                    placeholder="idade"
-                    value={form.idade || ''} 
-                    onChange={(e) => setChange('idade', e.target.value)}/>
-            </div>
-
-            <div className="field">
-                <label>CPF</label>
-                <input 
-                    type="text"
-                    placeholder="123.456.789-10"
-                    value={form.cpf || ''}
-                    onChange={(e) => setChange('cpf', e.target.value)}    
+                    value={paciente.email || ''}
+                    onChange={(e) => change("email", e.target.value)}
                 />
             </div>
 
             <div className="field">
-                <button onClick={submit}>{update ? "Atualizar" : "Cadastrar"}</button>
+                <label>Idade</label>
+                <input
+                    type="text"
+                    placeholder="idade"
+                    value={paciente.idade || ''}
+                    onChange={(e) => change("idade", e.target.value)}
+                />
+            </div>
+
+            <div className="field">
+                <label>CPF</label>
+                <input
+                    type="text"
+                    placeholder="123.456.789-10"
+                    value={paciente.cpf || ''}
+                    onChange={(e) => change("cpf", e.target.value)}
+                />
+            </div>
+
+            <div className="field">
+                <button onClick={submitForm}>{/*update ? "Atualizar" : "Cadastrar" */}Salvar</button>
             </div>
         </div>
-        
+
     );
 }
 

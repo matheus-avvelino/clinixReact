@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 function Container({ children }) {
-    return <div>{children}</div>;
-  }
-  
-  export default Container;
+    return <div className="container">{children}</div>;
+}
+
+export default Container;

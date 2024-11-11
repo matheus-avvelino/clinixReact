@@ -1,12 +1,21 @@
-:root,
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 html,
 body {
+    height: 100%;
     margin: 0;
     padding: 0;
 }
+
 .container {
-    width: 1024px;
-    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    /* Ocupa a altura total da viewport */
 }
 
 header {
@@ -14,6 +23,20 @@ header {
     color: white;
     padding: 16px;
     text-align: center;
+}
+
+main {
+    flex: 1;
+}
+
+footer {
+    text-align: center;
+    padding: 16px;
+    background-color: #9885da;
+    /* Cor de fundo */
+    color: #333;
+    margin-top: auto;
+    /* Empurra o footer para o final */
 }
 
 nav {
@@ -37,6 +60,15 @@ nav a {
 main {
     padding: 16px;
     min-height: 500px;
+}
+
+footer {
+    text-align: center;
+    padding: 16px;
+    background-color: #9885da;
+    color: #333;
+    margin-top: auto;
+    /* Empurra o footer para o final */
 }
 
 .btn-cadastrar {
@@ -98,40 +130,52 @@ table td a {
 
 .btn-alterar {
     text-align: center;
-    background-color: #9885da; /* Cor de fundo verde */
-    color: rgb(0, 0, 0); /* Cor do texto */
-    padding: 5px 10px; /* Espaçamento interno */
+    background-color: #9885da;
+    /* Cor de fundo verde */
+    color: rgb(255, 255, 255);
+    /* Cor do texto */
+    padding: 5px 10px;
+    /* Espaçamento interno */
     margin-bottom: 5px;
-    border: none; /* Remover borda padrão */
-    border-radius: 4px; /* Borda arredondada */
-    cursor: pointer; /* Mudar o cursor para indicar que é clicável */
+    border: none;
+    /* Remover borda padrão */
+    border-radius: 4px;
+    /* Borda arredondada */
+    cursor: pointer;
+    /* Mudar o cursor para indicar que é clicável */
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.4);
-    transition: transform 0.1s, background-color 0.1s; /* Transições suaves */
+    transition: transform 0.1s, background-color 0.1s;
+    /* Transições suaves */
 }
 
 .btn-alterar:hover {
-    background-color: #9885da; /* Cor de fundo um pouco mais escura ao passar o mouse */
-    transform: translateY(-4px); /* Move o botão para cima ao passar o mouse */
+    background-color: #9885da;
+    /* Cor de fundo um pouco mais escura ao passar o mouse */
+    transform: translateY(-4px);
+    /* Move o botão para cima ao passar o mouse */
 }
 
 .btn-alterar:active {
-    transform: translateY(4px); /* Move o botão para baixo quando pressionado */
-    background-color: #9885da; /* Cor de fundo ainda mais escura quando clicado */
+    transform: translateY(5px);
+    /* Move o botão para baixo quando pressionado */
+    background-color: #9885da;
+    /* Cor de fundo ainda mais escura quando clicado */
 }
 
 .btn-alterar:focus {
-    outline: none; /* Remove o contorno ao focar no botão */
+    outline: none;
+    /* Remove o contorno ao focar no botão */
 }
 
 footer {
     text-align: center;
     padding: 16px;
     background-color: #9885da;
-    color: #333;
+    color: #ffffff;
 }
 
-.footer p {
-    margin: 0;
+p {
+    font-size: 18px;
 }
 
 
@@ -139,18 +183,20 @@ footer {
     color: #FFFFFF;
     text-decoration: none;
     display: inline-flex;
+    font-size: 18px;
     align-items: center;
     margin-top: 10px;
 }
 
 .github-icon {
-    width: 20px;
-    height: 20px;
+    width: 26px;
+    height: 26px;
     margin-right: 5px;
 }
 
 .github-link:hover {
-    color: rgba(0, 0, 0, 0.8);;
+    color: rgba(0, 0, 0, 0.6);
+    ;
     opacity: 0.8;
 }
 
@@ -171,11 +217,13 @@ footer {
     flex: 1;
     max-width: 400px;
 }
+
 .cadastro .field label {
     color: #333333;
     font-weight: bold;
     font-family: 'Roboto', sans-serif;
 }
+
 .cadastro .field input {
     border: none;
     padding: 10px;
@@ -183,6 +231,7 @@ footer {
     margin: 5px 0;
     border-radius: 6px;
 }
+
 .cadastro .field button {
     border: none;
     padding: 10px;
@@ -200,9 +249,8 @@ footer {
 }
 
 .menu a.active {
-    background: #054f77;
-    color: #fff;
-    font-weight: bold;
+    background: #9885da;
+    color: black;
 }
 
 .error {
