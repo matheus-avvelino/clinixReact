@@ -13,7 +13,7 @@ function Detalhes() {
 
     useEffect(() => {
         dispatch(getDetailPaciente(id))
-    }, [id]);
+    }, [dispatch, id]);
 
     if (!paciente) {
         return <Error></Error>

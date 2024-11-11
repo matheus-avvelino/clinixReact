@@ -10,7 +10,7 @@ function Initial() {
 
     useEffect(() => {
         dispatch(getAllPacientes());
-    }, []);
+    }, [dispatch]);
 
     return (
         <>

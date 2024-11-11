@@ -13,7 +13,6 @@ function Routers() {
                     <Routes>
                         <Route path="/" Component={Initial} />
                         <Route path="/cadastro" Component={Cadastro} />
-                        <Route path="/teste" Component={Teste} />
                         <Route path="/detalhes/:id?" Component={Detalhes} />
                     </Routes>
                 </Layout>
@@ -23,12 +22,3 @@ function Routers() {
 }
 
 export default Routers
-
-
-function Teste() {
-    return (
-        <>
-            Teste
-        </>
-    )
-}

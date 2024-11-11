@@ -11,7 +11,7 @@ function Table() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { pacientes } = useSelector((state) => state.paciente)
-    const removePaciente = (id) => dispatch(deletePaciente(id))
+    const removePaciente = (paciente) => dispatch(deletePaciente(paciente))
 
     return (
         <div className="relative overflow-x-auto shadow-md sm:rounded-lg mt-[35px]">
@@ -48,7 +48,7 @@ function Table() {
                                 </button>
                                 <div className="w-px h-6 mx-4 bg-gray-300 dark:bg-gray-500"></div>
                                 <button
-                                    onClick={() => removePaciente(item.id)}
+                                    onClick={() => removePaciente(item)}
                                     className="font-medium text-blue-600 dark:text-red-500 hover:underline"
                                 >
                                     <FaTrash />
