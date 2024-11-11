@@ -1,17 +1,15 @@
 /* eslint-disable react/prop-types */
 import Header from "./header";
-import Menu from "./menu";
 import Footer from "./footer";
 import Container from "./container";
 
 function Layout({ children }) {
     return (
         <>
-            <Container>
+            <Container className="flex flex-col min-h-screen">
                 <Header />
-                <Menu />
-                <main>{children}</main>
-                <Footer />
+                <main className="flex-grow mx-auto w-full max-w-screen-xl p-4">{children}</main>
+                <Footer className="mt-auto"/>
             </Container>
         </>
     )

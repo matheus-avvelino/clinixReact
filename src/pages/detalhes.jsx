@@ -20,7 +20,6 @@ function Detalhes() {
         try {
             await updatePacientesApi(paciente)
             alert(`Edição do usuario ${paciente.nomeCompleto} feito com sucesso`)
-            setPaciente({})
             navigate("/")
 
         } catch {

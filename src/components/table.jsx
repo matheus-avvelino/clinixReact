@@ -2,13 +2,62 @@
 
 import { useNavigate } from "react-router-dom";
 import { columns } from "../config/columns-pacientes"
-import { FiEdit, FiDelete } from "react-icons/fi";
+
+import { FaEdit, FaTrash } from "react-icons/fa";
 
 function Table({ pacientes, deleteFn }) {
     const navigate = useNavigate();
 
     return (
-        <table>
+        <div className="relative overflow-x-auto shadow-md sm:rounded-lg mt-[35px]">
+            <table className="w-full text-sm text-left rtl:text-right dark:text-[#000000] ">
+                <thead className="text-xs text-[#000000] border-b uppercase bg-[#461ed8] dark:bg-[#9885da] dark:text-[#ffffff] dark:border-black">
+                    <tr className="text-center">
+                        {columns.pacientes.map((column, i) => (
+                            <th key={i} scope="col" className="px-2 py-4">
+                                {column}
+                            </th>
+                        ))}
+                        <th scope="col" className="px-2 py-4">
+                            Ação
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {pacientes.map((item, i) => (
+                        <tr
+                            key={i}
+                            className="bg-white border-b text-center dark:bg-[#ffffff]  dark:border-black "
+                        >
+                            <td className="px-2 py-4">{item.id}</td>
+                            <td className="px-2 py-4">{item.nomeCompleto}</td>
+                            <td className="px-2 py-4">{item.email}</td>
+                            <td className="px-2 py-4">{item.idade}</td>
+                            <td className="px-2 py-4">{item.cpf}</td>
+                            <td className="px-2 py-4 text-center flex items-center justify-center">
+                                <button
+                                    onClick={() => navigate(`/detalhes/${item.id}`)}
+                                    className="font-medium text-blue-600 dark:text-[#FFA726] hover:underline"
+                                >
+                                    <FaEdit/>
+                                </button>
+                                <div className="w-px h-6 mx-4 bg-gray-300 dark:bg-gray-500"></div>
+                                <button
+                                    onClick={() => deleteFn(item.id)}
+                                    className="font-medium text-blue-600 dark:text-red-500 hover:underline"
+                                >
+                                    <FaTrash />
+                                </button>
+
+                            </td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        </div>
+
+
+        /*<table>
             <thead>
                 <tr>
                     {columns.pacientes.map((column, i) => (
@@ -27,14 +76,14 @@ function Table({ pacientes, deleteFn }) {
                         <td>{item.idade}</td>
                         <td>{item.cpf}</td>
                         <td>
-                            <button onClick={() => navigate(`/detalhes/${item.id}`)} className="btn btn-editar">
+                            <button onClick={() => navigate(`/detalhes/${item.id}`)} classNameName="btn btn-editar">
                                 <FiEdit />
                             </button>
                         </td>
                         <td>
                             <button
                                 onClick={() => deleteFn(item.id)}
-                                className="btn btn-excluir"
+                                classNameName="btn btn-excluir"
                             >
                                 <FiDelete />
                             </button>
@@ -42,7 +91,7 @@ function Table({ pacientes, deleteFn }) {
                     </tr>
                 ))}
             </tbody>
-        </table>
+        </table>*/
     );
 }
 
