@@ -1,51 +1,31 @@
-import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom"
-import { detalhesPacientesApi, updatePacientesApi } from "../services/api";
+import { useEffect } from "react";
+import { useParams } from "react-router-dom"
 import Form from "../components/form";
 import Error from "../components/error";
+import { useDispatch, useSelector } from "react-redux";
+import { getDetailPaciente} from "../store/slices/paciente/actions";
 
 function Detalhes() {
+
     let { id } = useParams();
-    const [paciente, setPaciente] = useState(null);
-    const navigate = useNavigate();
-
-
-    const setChange = (field, value) =>
-        setPaciente({
-            ...paciente,
-            [field]: value,
-        })
-
-    const updatePaciente = async () => {
-        try {
-            await updatePacientesApi(paciente)
-            alert(`Edição do usuario ${paciente.nomeCompleto} feito com sucesso`)
-            navigate("/")
-
-        } catch {
-            throw new Error("Nao foi possivel cadastrar")
-
-        }
-    }
+    const dispatch = useDispatch();
+    const { detalhe: paciente } = useSelector((state) => state.paciente)
 
     useEffect(() => {
-        (async () => {
-            const paciente = await detalhesPacientesApi(id);
-            setPaciente(paciente.data);
-        })()
+        dispatch(getDetailPaciente(id))
     }, [id]);
 
-    if(!paciente){
+    if (!paciente) {
         return <Error></Error>
-    } else{
+    } else {
         return (
-        <>
-            {/*JSON.stringify(paciente)*/}
-            <Form paciente={paciente || {}} change={setChange} submit={updatePaciente} />
-        </>
-    )
+            <>
+                {/*JSON.stringify(paciente)*/}
+                <Form isEdit/>
+            </>
+        )
     }
 
-    
+
 }
 export default Detalhes

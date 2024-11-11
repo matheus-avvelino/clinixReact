@@ -4,9 +4,14 @@ import { useNavigate } from "react-router-dom";
 import { columns } from "../config/columns-pacientes"
 
 import { FaEdit, FaTrash } from "react-icons/fa";
+import { useDispatch, useSelector } from "react-redux";
+import { deletePaciente } from "../store/slices/paciente/actions";
 
-function Table({ pacientes, deleteFn }) {
+function Table() {
+    const dispatch = useDispatch();
     const navigate = useNavigate();
+    const { pacientes } = useSelector((state) => state.paciente)
+    const removePaciente = (id) => dispatch(deletePaciente(id))
 
     return (
         <div className="relative overflow-x-auto shadow-md sm:rounded-lg mt-[35px]">
@@ -39,11 +44,11 @@ function Table({ pacientes, deleteFn }) {
                                     onClick={() => navigate(`/detalhes/${item.id}`)}
                                     className="font-medium text-blue-600 dark:text-[#FFA726] hover:underline"
                                 >
-                                    <FaEdit/>
+                                    <FaEdit />
                                 </button>
                                 <div className="w-px h-6 mx-4 bg-gray-300 dark:bg-gray-500"></div>
                                 <button
-                                    onClick={() => deleteFn(item.id)}
+                                    onClick={() => removePaciente(item.id)}
                                     className="font-medium text-blue-600 dark:text-red-500 hover:underline"
                                 >
                                     <FaTrash />

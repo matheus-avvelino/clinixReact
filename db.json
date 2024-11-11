@@ -1,25 +1,11 @@
 {
   "pacientes": [
     {
-      "id": "1",
-      "nomeCompleto": "João da Silva",
-      "email": "joao.silva@email.com",
-      "idade": "23",
-      "cpf": "123.456.789-00"
-    },
-    {
       "id": "2",
       "nomeCompleto": "Maria Oliveira",
       "email": "maria.oliveira@email.com",
       "idade": 25,
       "cpf": "234.567.890-11"
-    },
-    {
-      "id": "56a5",
-      "nomeCompleto": "Manuel",
-      "email": "",
-      "idade": "35",
-      "cpf": "14141441"
     }
   ]
 }

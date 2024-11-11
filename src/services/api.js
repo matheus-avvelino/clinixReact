@@ -13,7 +13,7 @@ export async function deletePacientesApi(id) {
   }
 }
 
-export async function cadastroPacientesApi(form) {
+export async function registerPacientesApi(form) {
   try {
     await http.post(`/pacientes/`, form);
   } catch {
@@ -29,9 +29,10 @@ export async function updatePacientesApi(form) {
   }
 }
 
-export async function detalhesPacientesApi(id) {
+export async function detailPacientesApi(id) {
   try {
-    return await http.get(`/pacientes/${id}`);
+    const paciente = await http.get(`/pacientes/${id}`);
+    return paciente.data
   } catch {
     throw new Error("Não foi possível buscar o paciente por esse ID.");
   }

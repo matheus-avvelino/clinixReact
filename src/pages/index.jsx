@@ -1,34 +1,20 @@
 import Table from "../components/table";
-import { useEffect, useState } from "react";
-import { deletePacientesApi, getPacientesApi } from "../services/api";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { getAllPacientes } from "../store/slices/paciente/actions";
 
 function Initial() {
-    const [pacientes, setPacientes] = useState([]);
 
-    const deletePacientes = async (id) => {
-        try {
-            await deletePacientesApi(id);
-            await getPacientes();
-        } catch {
-            alert("aconteceu um erro");
-        }
-    };
+    const dispatch = useDispatch();
 
-    const getPacientes = async () => {
-        const data = await getPacientesApi();
-        setPacientes(data);
-    };
 
     useEffect(() => {
-        getPacientes();
+        dispatch(getAllPacientes());
     }, []);
 
     return (
         <>
-                <Table
-                    pacientes={pacientes}
-                    deleteFn={deletePacientes}
-                />
+            <Table />
         </>
     );
 }
