@@ -1,10 +1,10 @@
 import { useEffect } from "react";
-import Form from "../components/form";
+import FormPaciente from "../components/formPaciente";
 import { useDispatch } from "react-redux";
 import { setDetail } from "../store/slices/paciente/reducer";
 
 
-const Cadastro = () => {
+const CadastroPaciente = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -15,9 +15,9 @@ const Cadastro = () => {
 
         <>
             {/*JSON.stringify(form)*/}
-            <Form/>
+            <FormPaciente />
         </>
     );
 }
 
-export default Cadastro;
+export default CadastroPaciente;

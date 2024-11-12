@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const http = axios.create({
+const httpLocal = axios.create({
   baseURL: "http://localhost:3333/",
 });
 
-export default http;
+export default httpLocal;

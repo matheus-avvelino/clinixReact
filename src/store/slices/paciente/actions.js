@@ -24,7 +24,6 @@ export const getDetailPaciente = (id) => async (dispatch) => {
 
 export const editForm = (field, value) => async (dispatch, getState) => {
   const detalhe = getState().paciente.detalhe;
-  console.log(detalhe);
   dispatch(
     setDetail({
       ...detalhe,

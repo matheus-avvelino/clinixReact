@@ -1,4 +1,4 @@
-import http from "../config/http";
+import httpLocal from "../config/httpLocal";
 
 const patchIdentify ='/pacientes'
 
@@ -9,7 +9,7 @@ const patchIdentify ='/pacientes'
  */
 export async function fetchAll() {
   try {
-    const response = await http.get(`${patchIdentify}`);
+    const response = await httpLocal.get(`${patchIdentify}`);
     return response.data;
   } catch (error) {
     console.error("Erro ao buscar todos os pacientes:", error.message);
@@ -24,7 +24,7 @@ export async function fetchAll() {
  */
 export async function removeById(id) {
   try {
-    await http.delete(`${patchIdentify}/${id}`);
+    await httpLocal.delete(`${patchIdentify}/${id}`);
   } catch (error) {
     console.error("Erro ao deletar paciente:", error.message);
     throw new Error("Não foi possível deletar o paciente. Tente novamente.");
@@ -44,7 +44,7 @@ export async function removeById(id) {
  */
 export async function create(form) {
   try {
-    await http.post(`${patchIdentify}/`, form);
+    await httpLocal.post(`${patchIdentify}/`, form);
   } catch (error) {
     console.error("Erro ao cadastrar paciente:", error.message);
     throw new Error("Não foi possível cadastrar o paciente. Verifique os dados e tente novamente.");
@@ -64,7 +64,7 @@ export async function create(form) {
  */
 export async function update(form) {
   try {
-    await http.patch(`${patchIdentify}/${form.id}`, form);
+    await httpLocal.patch(`${patchIdentify}/${form.id}`, form);
   } catch (error) {
     console.error("Erro ao atualizar cadastro de paciente:", error.message);
     throw new Error("Não foi possível atualizar o cadastro do paciente.");
@@ -79,7 +79,7 @@ export async function update(form) {
  */
 export async function fetchDetailsById(id) {
   try {
-    const response = await http.get(`${patchIdentify}/${id}`);
+    const response = await httpLocal.get(`${patchIdentify}/${id}`);
     return response.data;
   } catch (error) {
     console.error("Erro ao buscar detalhes do paciente:", error.message);

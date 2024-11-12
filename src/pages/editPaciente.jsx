@@ -1,11 +1,11 @@
 import { useEffect } from "react";
 import { useParams } from "react-router-dom"
-import Form from "../components/form";
+import FormPaciente from "../components/formPaciente";
 import Error from "../components/error";
 import { useDispatch, useSelector } from "react-redux";
 import { getDetailPaciente} from "../store/slices/paciente/actions";
 
-function Detalhes() {
+function EditPaciente() {
 
     let { id } = useParams();
     const dispatch = useDispatch();
@@ -21,11 +21,11 @@ function Detalhes() {
         return (
             <>
                 {/*JSON.stringify(paciente)*/}
-                <Form isEdit/>
+                <FormPaciente isEdit/>
             </>
         )
     }
 
 
 }
-export default Detalhes
+export default EditPaciente

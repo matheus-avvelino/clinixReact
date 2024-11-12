@@ -48,15 +48,26 @@ function Header() {
                                 Inicio
                             </NavLink>
                         </li>
+
                         <li>
                             <NavLink
-                                to="/cadastro"
+                                to="/pacientes"
                                 className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-[#000000] md:p-0 dark:text-white md:dark:hover:text-[#000000] dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                                aria-current="page"
                             >
-                                Cadastro
+                                Pacientes
                             </NavLink>
                         </li>
 
+                        <li>
+                            <NavLink
+                                to="/psicologos"
+                                className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-[#000000] md:p-0 dark:text-white md:dark:hover:text-[#000000] dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                                aria-current="page"
+                            >
+                                Psicologos
+                            </NavLink>
+                        </li>
                     </ul>
                 </div>
             </div>

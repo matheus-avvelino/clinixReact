@@ -1,16 +1,16 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  pacientes: [],
+  psicologos: [],
   detalhe: [],
 };
 
-export const counterSlice = createSlice({
-  name: 'paciente',
+export const psicologoSlice = createSlice({
+  name: 'psicologo',
   initialState,
   reducers: {
-    setPacientes: (state, action) => {
-      state.pacientes = action.payload;
+    setPsicologos: (state, action) => {
+      state.psicologos = action.payload;
     },
     setDetail: (state, action) => {
       state.detalhe = action.payload;
@@ -21,6 +21,6 @@ export const counterSlice = createSlice({
   },
 });
 
-export const { setPacientes, setDetail, resetDetail } = counterSlice.actions;
+export const { setPsicologos, setDetail , resetDetail} = psicologoSlice.actions;
 
-export default counterSlice.reducer;
+export default psicologoSlice.reducer;
