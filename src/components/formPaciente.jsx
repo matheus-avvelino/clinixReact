@@ -3,17 +3,25 @@ import { useDispatch, useSelector } from "react-redux";
 import { editForm, saveForm } from "../store/slices/paciente/actions";
 import { useNavigate } from "react-router-dom";
 import FormEndereco from "./formEndereco";
+import { useEffect } from "react";
 
-const FormPaciente = ({ isEdit }) => {
+const FormPaciente = ({ isEdit}) => {
+    const { detalhe: paciente } = useSelector((state) => state.paciente)
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const { detalhe: paciente } = useSelector((state) => state.paciente);
 
     const changedField = (field, value) => dispatch(editForm(field, value));
 
     const handleEnderecoChange = (endereco) => {
-        dispatch(editForm("endereco", endereco)); // Atualiza o endereço no estado global
+        console.log("Endereço recebido:", endereco);
+        dispatch(editForm("endereco", endereco));
     };
+
+    useEffect(() => {
+        if (!isEdit) {
+            dispatch(editForm("endereco", {})); // Limpa o endereço
+        }
+    }, [isEdit, dispatch]);
 
     const submitForm = () => {
         dispatch(saveForm(isEdit)).then(() => {
@@ -86,7 +94,7 @@ const FormPaciente = ({ isEdit }) => {
                 </div>
             </div>
 
-            <FormEndereco onEnderecoChange={handleEnderecoChange} pacienteEndereco={paciente?.endereco} />
+            <FormEndereco onEnderecoChange={handleEnderecoChange} usuarioEndereco={paciente?.endereco} isEdit={isEdit} />
 
             <button
                 onClick={submitForm}

@@ -24,12 +24,26 @@ export const getDetailPaciente = (id) => async (dispatch) => {
 
 export const editForm = (field, value) => async (dispatch, getState) => {
   const detalhe = getState().paciente.detalhe;
-  dispatch(
-    setDetail({
-      ...detalhe,
-      [field]: value,
-    })
-  );
+
+  // Se o campo for 'endereco', vamos garantir que estamos tratando como um objeto e não sobrescrevendo tudo
+  if (field === "endereco") {
+    dispatch(
+      setDetail({
+        ...detalhe,
+        endereco: {
+          ...detalhe.endereco, // Preserva o que já estava no endereco
+          ...value, // Atualiza o campo específico de endereco
+        },
+      })
+    );
+  } else {
+    dispatch(
+      setDetail({
+        ...detalhe,
+        [field]: value,
+      })
+    );
+  }
 };
 
 export const saveForm =

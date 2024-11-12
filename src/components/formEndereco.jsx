@@ -3,13 +3,14 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { buscarEndereco } from "../store/slices/viaCep/actions";
 
-const FormEndereco = ({ onEnderecoChange,pacienteEndereco }) => {
-  const endereco = pacienteEndereco;
-  console.log(endereco)
+const FormEndereco = ({ onEnderecoChange, usuarioEndereco }) => {
+  const endereco = usuarioEndereco;
+  console.log(endereco);
+
   // Inicializa o estado com os valores do endereço passado
-  const [cep, setCep] = useState(endereco?.cep || ""); 
+  const [cep, setCep] = useState(endereco?.cep || "");
   const [form, setForm] = useState({
-    cep: endereco?.cep || "",
+    cep: cep || "",
     logradouro: endereco?.logradouro || "",
     complemento: endereco?.complemento || "",
     bairro: endereco?.bairro || "",
@@ -22,22 +23,21 @@ const FormEndereco = ({ onEnderecoChange,pacienteEndereco }) => {
   // Obtendo o estado do Redux
   const { endereco: enderecoRedux, erro, status } = useSelector((state) => state.viaCep);
 
-
   useEffect(() => {
-    // Atualiza o estado sempre que 'pacienteEndereco' mudar
+    // Atualiza o estado sempre que 'endereco' mudar
     if (endereco) {
-      setForm({
-        cep: endereco?.cep || "",
-        logradouro: endereco?.logradouro || "",
-        complemento: endereco?.complemento || "",
-        bairro: endereco?.bairro || "",
-        cidade: endereco?.cidade || "",
-        uf: endereco?.uf || "",
-      });
+      setCep(endereco.cep)
+      const novoEndereco = {
+        cep: endereco?.cep,
+        logradouro: endereco?.logradouro,
+        complemento: endereco?.complemento,
+        bairro: endereco?.bairro,
+        cidade: endereco?.cidade,
+        uf: endereco?.uf,
+      };
+      setForm(novoEndereco); // Atualiza o estado no componente pai
     }
   }, [endereco]);
-
-
 
   useEffect(() => {
     if (enderecoRedux) {
@@ -57,15 +57,16 @@ const FormEndereco = ({ onEnderecoChange,pacienteEndereco }) => {
   useEffect(() => {
     // Limpa os campos do formulário quando o CEP estiver vazio
     if (cep === "") {
-      setForm({
+      const novoEndereco = {
         cep: "",
         logradouro: "",
         complemento: "",
         bairro: "",
         cidade: "",
         uf: "",
-      }); // Passa um objeto vazio para o componente pai
-      onEnderecoChange({});
+      };
+      setForm(novoEndereco);
+      onEnderecoChange(novoEndereco);
     }
   }, [cep]);
 
@@ -87,8 +88,8 @@ const FormEndereco = ({ onEnderecoChange,pacienteEndereco }) => {
     // Remove caracteres não numéricos
     value = value.replace(/\D/g, "");
 
-    // Se o valor tiver mais de 5 caracteres e não tiver o traço, adiciona o traço
-    if (value.length > 5 && !value.includes("-")) {
+    // Se o valor tiver mais de 4 caracteres e não tiver o traço, adiciona o traço
+    if (value.length > 4 && !value.includes("-")) {
       value = value.replace(/(\d{5})(\d{3})/, "$1-$2"); // Adiciona o traço no formato
     }
 
@@ -98,35 +99,35 @@ const FormEndereco = ({ onEnderecoChange,pacienteEndereco }) => {
 
   return (
     <div className="max-w-md mx-auto">
-      {JSON.stringify(form)}
+      {/*JSON.stringify(form)*/}
       <div className="relative z-0 w-full mb-5 group">
         <input
           type="text"
           name="cep"
-          value={cep || ""}
+          value={cep}
           onChange={handleCepChange} // Atualiza o CEP com máscara
           onBlur={handleCepBlur} // Chama a função para buscar o endereço ao perder o foco
-          maxLength={9} // Limita o CEP para 10 caracteres (com o traço)
+          maxLength={9} // Limita o CEP para 9 caracteres (com o traço)
           className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
           placeholder=" "
           required
         />
+        {status === "loading" && <p>Buscando...</p>} {/* Exibe mensagem de carregamento */}
+        {erro && <p style={{ color: "red", marginBottom: "20px" }}>{erro}</p>} {/* Exibe erro, se houver */}
         <label className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
           CEP
         </label>
       </div>
 
-      {status === "loading" && <p>Buscando...</p>} {/* Exibe mensagem de carregamento */}
-      {erro && <p style={{ color: "red" }}>{erro}</p>} {/* Exibe erro, se houver */}
-
+      {/* Campos do formulário */}
       <div className="relative z-0 w-full mb-5 group">
         <input
           type="text"
           name="logradouro"
-          value={(form.logradouro + " " + form.complemento)  || ""}
-          onChange={handleChange} // Atualiza o campo de logradouro
+          value={(form.logradouro + " " + form.complemento) || ""}
+          onChange={handleChange}
           readOnly
-          className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+          className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600  focus:outline-none focus:ring-0 "
           placeholder=" "
           required
         />
@@ -135,14 +136,15 @@ const FormEndereco = ({ onEnderecoChange,pacienteEndereco }) => {
         </label>
       </div>
 
+      {/* Outros campos de endereço */}
       <div className="relative z-0 w-full mb-5 group">
         <input
           type="text"
           name="bairro"
           value={form.bairro || ""}
-          onChange={handleChange} // Atualiza o campo de bairro
+          onChange={handleChange}
           readOnly
-          className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+          className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600  focus:outline-none focus:ring-0 "
           placeholder=" "
           required
         />
@@ -151,15 +153,16 @@ const FormEndereco = ({ onEnderecoChange,pacienteEndereco }) => {
         </label>
       </div>
 
+      {/* Cidade e UF */}
       <div className="grid md:grid-cols-2 md:gap-6">
         <div className="relative z-0 w-full mb-5 group">
           <input
             type="text"
             name="cidade"
             value={form.cidade || ""}
-            onChange={handleChange} // Atualiza o campo de cidade
+            onChange={handleChange}
             readOnly
-            className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+            className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600  focus:outline-none focus:ring-0 "
             placeholder=" "
             required
           />
@@ -167,14 +170,15 @@ const FormEndereco = ({ onEnderecoChange,pacienteEndereco }) => {
             Cidade
           </label>
         </div>
+
         <div className="relative z-0 w-full mb-5 group">
           <input
             type="text"
             name="uf"
             value={form.uf || ""}
-            onChange={handleChange} // Atualiza o campo de UF
+            onChange={handleChange}
             readOnly
-            className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+            className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600  focus:outline-none focus:ring-0"
             placeholder=" "
             required
           />
@@ -188,3 +192,4 @@ const FormEndereco = ({ onEnderecoChange,pacienteEndereco }) => {
 };
 
 export default FormEndereco;
+  

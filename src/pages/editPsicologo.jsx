@@ -21,7 +21,7 @@ function EditPsicologo() {
         return (
             <>
                 {/*JSON.stringify(psicologo)*/}
-                <FormPsicologo isEdit />
+                <FormPsicologo isEdit/>
             </>
         );
     }

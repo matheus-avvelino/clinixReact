@@ -20,7 +20,7 @@ function EditPaciente() {
     } else {
         return (
             <>
-                {/*JSON.stringify(paciente)*/}
+                {/*SON.stringify(paciente)*/}
                 <FormPaciente isEdit/>
             </>
         )

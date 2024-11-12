@@ -1,16 +1,16 @@
 /* eslint-disable react/no-unknown-property */
 /* eslint-disable react/prop-types */
 
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector} from "react-redux";
 import { editForm, saveForm } from "../store/slices/psicologo/actions";
 import { useNavigate } from "react-router-dom";
 import FormEndereco from "./formEndereco";
 
-const FormPsicologo = ({ isEdit }) => {
+const FormPsicologo = ({ isEdit}) => {
+    const { detalhe: psicologo } = useSelector((state) => state.psicologo);
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const changedField = (field, value) => dispatch(editForm(field, value));
-    const { detalhe: psicologo } = useSelector((state) => state.psicologo);
 
     const handleEnderecoChange = (endereco) => {
         dispatch(editForm("endereco", endereco)); // Atualiza o endereço no estado global
@@ -101,7 +101,7 @@ const FormPsicologo = ({ isEdit }) => {
                 </label>
             </div>
 
-            <FormEndereco onEnderecoChange={handleEnderecoChange}/>
+            <FormEndereco onEnderecoChange={handleEnderecoChange} usuarioEndereco={psicologo?.endereco}/>
 
             <button
                 onClick={submitForm}
